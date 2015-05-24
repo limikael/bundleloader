@@ -1,5 +1,5 @@
 <html>
-	<script src="bundleloader.js"></script>
+	<script src="bundleloader.min.js"></script>
 	<script>
 		var loader=new BundleLoader();
 
@@ -7,7 +7,7 @@
 			console.log("loaded, hello="+window.helloWorld);
 		}
 
-		loader.load("test.php","LOADING",50);
+		loader.load("test.php","LOADING");
 		//loader.load("test.php");
 		//loader.show("LOADING",50);
 		//loader.show("CONNECTING");

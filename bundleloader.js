@@ -62,12 +62,14 @@ function BundleLoader() {
 	this.waitForBody();
 }
 
+var proto=BundleLoader.prototype;
+
 /**
  * Wait for the body to exist so we can attach ourselves.
  * @method waitForBody
  * @private
  */
-BundleLoader.prototype.waitForBody = function() {
+proto.waitForBody = function() {
 	if (!document.body) {
 		setTimeout(this.waitForBody.bind(this), 0);
 		return;
@@ -80,7 +82,7 @@ BundleLoader.prototype.waitForBody = function() {
  * Show the loader, with message and optional percent.
  * @method show
  */
-BundleLoader.prototype.showProgress = function(title, percent) {
+proto.showProgress = function(title, percent) {
 	this.title = title;
 
 	if (this.animateInterval)
@@ -108,7 +110,7 @@ BundleLoader.prototype.showProgress = function(title, percent) {
  * Show only a message.
  * @method showMessage
  */
-BundleLoader.prototype.showMessage = function(title) {
+proto.showMessage = function(title) {
 	this.title = title;
 
 	if (this.animateInterval)
@@ -127,7 +129,7 @@ BundleLoader.prototype.showMessage = function(title) {
  * @method onAnimateInterval
  * @private
  */
-BundleLoader.prototype.onAnimateInterval = function() {
+proto.onAnimateInterval = function() {
 	var current = parseFloat(this.progressElement.style.left);
 
 	current += 3;
@@ -141,7 +143,7 @@ BundleLoader.prototype.onAnimateInterval = function() {
  * Hide the loader.
  * @method hide
  */
-BundleLoader.prototype.hide = function() {
+proto.hide = function() {
 	if (this.animateInterval)
 		clearInterval(this.animateInterval);
 
@@ -154,7 +156,7 @@ BundleLoader.prototype.hide = function() {
  * Load javascript.
  * @method load
  */
-BundleLoader.prototype.load = function(url, message, completeProgress) {
+proto.load = function(url, message, completeProgress) {
 	if (!message)
 		message = "LOADING";
 
@@ -184,7 +186,7 @@ BundleLoader.prototype.load = function(url, message, completeProgress) {
  * @method onLoadRequestProgress
  * @private
  */
-BundleLoader.prototype.onLoadRequestProgress = function(e) {
+proto.onLoadRequestProgress = function(e) {
 	if (e.total) {
 		this.showProgress(this.title, this.completeProgress * e.loaded / e.total);
 	}
@@ -195,7 +197,7 @@ BundleLoader.prototype.onLoadRequestProgress = function(e) {
  * @method onLoadRequestLoad
  * @private
  */
-BundleLoader.prototype.onLoadRequestLoad = function() {
+proto.onLoadRequestLoad = function() {
 	if (this.loadRequest.status != 200 || !this.loadRequest.response.byteLength) {
 		this.loadRequest = null;
 		this.showMessage("LOAD ERROR");
@@ -229,7 +231,7 @@ BundleLoader.prototype.onLoadRequestLoad = function() {
  * @method onLoadRequestError
  * @private
  */
-BundleLoader.prototype.onLoadRequestError = function() {
+proto.onLoadRequestError = function() {
 	this.loadRequest = null;
 	this.showMessage("LOAD ERROR");
 }
