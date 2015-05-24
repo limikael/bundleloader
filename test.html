@@ -1,0 +1,16 @@
+<html>
+	<script src="bundleloader.js"></script>
+	<script>
+		var loader=new BundleLoader();
+
+		loader.onload=function() {
+			console.log("loaded, hello="+window.helloWorld);
+		}
+
+		loader.load("test.php","LOADING",50);
+		//loader.load("test.php");
+		//loader.show("LOADING",50);
+		//loader.show("CONNECTING");
+		//loader.hide();
+	</script>
+</html>
