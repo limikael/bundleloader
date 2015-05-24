@@ -8,9 +8,9 @@ module.exports = function(grunt) {
 			bundleloader: {
 				options: {
 					mangle: true,
+					/*mangleProperties: true,*/
 					compress: true,
-					mangleProperties: true,
-					reserveDOMProperties: true
+					reserveDOMProperties: true,
 				},
 				files: [{
 					src: "bundleloader.js",

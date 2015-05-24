@@ -155,6 +155,7 @@ proto.hide = function() {
 /**
  * Load javascript.
  * @method load
+ * @private
  */
 proto.load = function(url, message, completeProgress) {
 	if (!message)
