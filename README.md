@@ -23,8 +23,8 @@ it would be nice to have, using CSS for example.
 Basic Usage
 -----------
 
-The basic usage is like this, to just load a file and do something when it
-has been loaded and run:
+The basic usage is like this. Here we just tell BundleLoader to load a javascript file. The file will be loaded and
+automatically executed and then a callback function will be called:
 
 ````html
 <html>
