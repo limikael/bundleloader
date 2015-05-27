@@ -15,8 +15,8 @@ to show a progress bar while the script is being loaded. It is under 4k in size.
 There is room for improvement. There is currently no way to theme the loading bar,
 it would be nice to have, using CSS for example.
 
-* Download (bundleloader.min.js)[http://rawgit.com/limikael/bundleloader/master/bundleloader.min.js], 3.7kb
-* Check the (Class Docs)[http://rawgit.com/limikael/bundleloader/master/doc/classes/BundleLoader.html]
+* Download [bundleloader.min.js](http://rawgit.com/limikael/bundleloader/master/bundleloader.min.js), 3.7kb
+* Check the [Class Docs](http://rawgit.com/limikael/bundleloader/master/doc/classes/BundleLoader.html)
 
 Basic Usage
 -----------
