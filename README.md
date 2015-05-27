@@ -1,6 +1,8 @@
 BundleLoader
 ============
 
+<img align="right" width="250" src="https://raw.githubusercontent.com/limikael/bundleloader/master/img/bundleloader.png" />
+
 It is a common pattern to use tools like browserify to bundle several javascript
 from an application into one large file. This creates a challenge if we want to 
 show a progress bar when the application is loading, since the progress bar 
