@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>BundleLoader - bundleloader</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="bundleloader" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/BundleLoader.html">BundleLoader</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>BundleLoader Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/bundleloader.js.html#l1"><code>bundleloader.js:1</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    <p>Load a javascript and run it, and shows a progress bar while doing so.</p>
+<p>For making the transition into the actualy application, there are some
+other features, such as the ability to not make the progress bar go
+to 100%.</p>
+
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_hide">hide</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_load">load</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_onAnimateInterval">onAnimateInterval</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_onLoadRequestError">onLoadRequestError</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_onLoadRequestLoad">onLoadRequestLoad</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_onLoadRequestProgress">onLoadRequestProgress</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_show">show</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_showMessage">showMessage</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_waitForBody">waitForBody</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_hide" class="method item">
+    <h3 class="name"><code>hide</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l151"><code>bundleloader.js:151</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Hide the loader.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_load" class="method item">
+    <h3 class="name"><code>load</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>url</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[message]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[completeProgress]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l164"><code>bundleloader.js:164</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Load javascript.</p>
+<p>This function loads the javascript from the specified url, and
+then runs it.</p>
+<p>By default, the loading screen will be hidden when the script
+is run. If there are extra resources to be loaded as part of the
+application startup, specify a number for the completeProgress
+parameter, and the loading screen will not hide itself, but instead
+stop at the specified percentage.</p>
+<p>It is then up to the loaded bundle to actually hide the loader when
+all resources are loaded.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">url</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Url to the javascript main bundle file.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[message]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The message to show while loading.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[completeProgress]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The progress to stop at.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_onAnimateInterval" class="method item private">
+    <h3 class="name"><code>onAnimateInterval</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l136"><code>bundleloader.js:136</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Animate the loader if the size of the load job is not known.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_onLoadRequestError" class="method item private">
+    <h3 class="name"><code>onLoadRequestError</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l253"><code>bundleloader.js:253</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>On error.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_onLoadRequestLoad" class="method item private">
+    <h3 class="name"><code>onLoadRequestLoad</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l219"><code>bundleloader.js:219</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Load request complete.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_onLoadRequestProgress" class="method item private">
+    <h3 class="name"><code>onLoadRequestProgress</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l208"><code>bundleloader.js:208</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Load request progress.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>title</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[percent]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l84"><code>bundleloader.js:84</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Show the loader, with message and optional percent.</p>
+<p>The percent parameter is optional. If this is omitted the
+progress bar will show as in an indefinite state.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">title</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The message to show.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[percent]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The percentage of the completion to show.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_showMessage" class="method item">
+    <h3 class="name"><code>showMessage</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>title</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l117"><code>bundleloader.js:117</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Show only a message without the progress bar.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">title</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_waitForBody" class="method item private">
+    <h3 class="name"><code>waitForBody</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/bundleloader.js.html#l70"><code>bundleloader.js:70</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Wait for the body to exist so we can attach ourselves.</p>
+
+    </div>
+
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

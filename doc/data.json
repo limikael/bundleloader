@@ -1,0 +1,158 @@
+{
+    "project": {
+        "name": "bundleloader",
+        "description": "Load a javascript file and run it.",
+        "version": "0.0.1",
+        "url": "https://github.com/limikael/bundleloader"
+    },
+    "files": {
+        "bundleloader.js": {
+            "name": "bundleloader.js",
+            "modules": {},
+            "classes": {
+                "BundleLoader": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "BundleLoader": {
+            "name": "BundleLoader",
+            "shortname": "BundleLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "bundleloader.js",
+            "line": 1,
+            "description": "Load a javascript and run it, and shows a progress bar while doing so.\n\nFor making the transition into the actualy application, there are some\nother features, such as the ability to not make the progress bar go\nto 100%."
+        }
+    },
+    "classitems": [
+        {
+            "file": "bundleloader.js",
+            "line": 70,
+            "description": "Wait for the body to exist so we can attach ourselves.",
+            "itemtype": "method",
+            "name": "waitForBody",
+            "access": "private",
+            "tagname": "",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 84,
+            "description": "Show the loader, with message and optional percent.\n\nThe percent parameter is optional. If this is omitted the\nprogress bar will show as in an indefinite state.",
+            "itemtype": "method",
+            "name": "show",
+            "params": [
+                {
+                    "name": "title",
+                    "description": "The message to show.",
+                    "type": "String"
+                },
+                {
+                    "name": "percent",
+                    "description": "The percentage of the completion to show.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 117,
+            "description": "Show only a message without the progress bar.",
+            "itemtype": "method",
+            "name": "showMessage",
+            "params": [
+                {
+                    "name": "title",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 136,
+            "description": "Animate the loader if the size of the load job is not known.",
+            "itemtype": "method",
+            "name": "onAnimateInterval",
+            "access": "private",
+            "tagname": "",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 151,
+            "description": "Hide the loader.",
+            "itemtype": "method",
+            "name": "hide",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 164,
+            "description": "Load javascript.\n\nThis function loads the javascript from the specified url, and \nthen runs it.\n\nBy default, the loading screen will be hidden when the script\nis run. If there are extra resources to be loaded as part of the\napplication startup, specify a number for the completeProgress\nparameter, and the loading screen will not hide itself, but instead\nstop at the specified percentage.\n\nIt is then up to the loaded bundle to actually hide the loader when\nall resources are loaded.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "Url to the javascript main bundle file.",
+                    "type": "String"
+                },
+                {
+                    "name": "message",
+                    "description": "The message to show while loading.",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "completeProgress",
+                    "description": "The progress to stop at.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 208,
+            "description": "Load request progress.",
+            "itemtype": "method",
+            "name": "onLoadRequestProgress",
+            "access": "private",
+            "tagname": "",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 219,
+            "description": "Load request complete.",
+            "itemtype": "method",
+            "name": "onLoadRequestLoad",
+            "access": "private",
+            "tagname": "",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 253,
+            "description": "On error.",
+            "itemtype": "method",
+            "name": "onLoadRequestError",
+            "access": "private",
+            "tagname": "",
+            "class": "BundleLoader"
+        }
+    ],
+    "warnings": []
+}
