@@ -8,7 +8,7 @@ files from an application together into one large file. This creates a challenge
 if we want to show a progress bar when the application is loading, since the code
 for the progress bar can't be bundled with the application itself. This is a kind 
 of chicken or egg problem, the progress bar to load the application can't be bundled 
-with application, because then the application would need to be laoded before the 
+with application, because then the application would need to be loaded before the 
 progress bar could be shown.
 
 BundleLoader provides an easy way to load a javascript file and run it, and
