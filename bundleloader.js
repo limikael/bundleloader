@@ -19,6 +19,7 @@ function BundleLoader() {
 	s.height = "100%";
 	s.background = "#000000";
 	s.display = "none";
+	s.zIndex = 1;
 
 	this.titleElement = document.createElement("div");
 	this.titleElement.innerHTML = "LOADING";
