@@ -9,16 +9,16 @@ Basic Usage
 The basic usage, to just load a file and do something when it has been loaded and run:
 
 ````html
-	<html>
-		<script src="bundleloader.min.js"></script>
-		<script>
-			var loader=new BundleLoader();
+<html>
+	<script src="bundleloader.min.js"></script>
+	<script>
+		var loader = new BundleLoader();
 
-			loader.onload=function() {
-				console.log("the script is loaded...");
-			}
+		loader.onload = function() {
+			console.log("the script is loaded...");
+		}
 
-			loader.load("myscript.js");
-		</script>
-	</html>
+		loader.load("myscript.js");
+	</script>
+</html>
 ````
