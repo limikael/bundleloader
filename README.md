@@ -1,12 +1,21 @@
 BundleLoader
 ============
 
-
+It is a common pattern to use tools like browserify to bundle several javascript
+from an application into one large file. This creates a challenge if we want to 
+show a progress bar when the application is loading, since the progress bar 
+can't be bundled with the application itself. This is a kind of chicken or egg
+problem, the progress bar to load the application can't be bundled with application,
+because then the application would need to be laoded before the progress bar could
+be shown.
 
 BundleLoader provides an easy way to load a javascript file and run it, and
-to show a progress bar while the script is being loaded. The progress bar is 
-not particularly themable at the moment. It is intended for bundled games, 
-for example. 
+to show a progress bar while the script is being loaded. It is under 4k in size.
+
+There is room for improvement. There is currently no way to theme the loading bar,
+it would be nice to have, using CSS for example.
+
+
 
 Basic Usage
 -----------
