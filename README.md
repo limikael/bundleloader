@@ -41,7 +41,7 @@ automatically executed and then a callback function will be called:
 </html>
 ````
 
-More resources
+More Resources
 --------------
 
 In the case where there are more resources needed by the loaded bundle, we
