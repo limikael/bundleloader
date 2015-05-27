@@ -1,6 +1,9 @@
 /**
- * Loads a javascript and runs it, and shows a progress bar while doing so.
- * Can also show only the progress bar.
+ * Load a javascript and run it, and shows a progress bar while doing so.
+ *
+ * For making the transition into the actualy application, there are some
+ * other features, such as the ability to not make the progress bar go
+ * to 100%.
  * @class BundleLoader
  */
 function BundleLoader() {
@@ -80,7 +83,12 @@ proto.waitForBody = function() {
 
 /**
  * Show the loader, with message and optional percent.
+ *
+ * The percent parameter is optional. If this is omitted the
+ * progress bar will show as in an indefinite state.
  * @method show
+ * @param {String} title The message to show.
+ * @param {Number} [percent] The percentage of the completion to show.
  */
 proto.showProgress = function(title, percent) {
 	this.title = title;
@@ -107,8 +115,9 @@ proto.showProgress = function(title, percent) {
 }
 
 /**
- * Show only a message.
+ * Show only a message without the progress bar.
  * @method showMessage
+ * @param {String} title
  */
 proto.showMessage = function(title) {
 	this.title = title;
@@ -154,8 +163,22 @@ proto.hide = function() {
 
 /**
  * Load javascript.
+ * 
+ * This function loads the javascript from the specified url, and 
+ * then runs it.
+ *
+ * By default, the loading screen will be hidden when the script
+ * is run. If there are extra resources to be loaded as part of the
+ * application startup, specify a number for the completeProgress
+ * parameter, and the loading screen will not hide itself, but instead
+ * stop at the specified percentage.
+ *
+ * It is then up to the loaded bundle to actually hide the loader when
+ * all resources are loaded.
  * @method load
- * @private
+ * @param {String} url Url to the javascript main bundle file.
+ * @param {String} [message] The message to show while loading.
+ * @param {Number} [completeProgress] The progress to stop at.
  */
 proto.load = function(url, message, completeProgress) {
 	if (!message)
