@@ -10,6 +10,7 @@ function BundleLoader() {
 	var s;
 
 	this.element = document.createElement("div");
+	this.element.className = "bundleloader";
 	s = this.element.style;
 	s.position = "fixed";
 	s.top = "0";
@@ -65,7 +66,7 @@ function BundleLoader() {
 	this.waitForBody();
 }
 
-var proto=BundleLoader.prototype;
+var proto = BundleLoader.prototype;
 
 /**
  * Wait for the body to exist so we can attach ourselves.
@@ -163,8 +164,8 @@ proto.hide = function() {
 
 /**
  * Load javascript.
- * 
- * This function loads the javascript from the specified url, and 
+ *
+ * This function loads the javascript from the specified url, and
  * then runs it.
  *
  * By default, the loading screen will be hidden when the script
