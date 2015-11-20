@@ -20,6 +20,7 @@ function BundleLoader() {
 	s.background = "#000000";
 	s.display = "none";
 	s.zIndex = 1;
+	s.overflow="hidden";
 
 	this.titleElement = document.createElement("div");
 	this.titleElement.innerHTML = "LOADING";
@@ -178,13 +179,16 @@ proto.hide = function() {
  * It is then up to the loaded bundle to actually hide the loader when
  * all resources are loaded.
  * @method load
- * @param {String} url Url to the javascript main bundle file.
+ * @param {String} urls Url or array of urls to the javascript main bundle file.
  * @param {String} [message] The message to show while loading.
  * @param {Number} [completeProgress] The progress to stop at.
  */
-proto.load = function(url, message, completeProgress) {
+proto.load = function(urls, message, completeProgress) {
 	if (!message)
 		message = "LOADING";
+
+	if (typeof urls == "string")
+		urls = [urls];
 
 	this.completeProgress = completeProgress;
 
@@ -194,8 +198,38 @@ proto.load = function(url, message, completeProgress) {
 	if (this.loadRequest)
 		throw new Error("Already loading");
 
+	this.urls = urls;
+	this.currentUrlIndex = 0;
+
+	this.loadNext();
+	this.showProgress(message);
+}
+
+/**
+ * Load next url.
+ * @method loadNext
+ */
+proto.loadNext = function() {
+	if (this.loadRequest)
+		throw new Error("Already loading");
+
+	if (this.currentUrlIndex >= this.urls.length) {
+		if (this.completeProgress && this.completeProgress < 100)
+			this.showProgress(this.title, this.completeProgress);
+
+		else
+			this.hide();
+
+		if (this.onload)
+			this.onload();
+
+		return;
+	}
+
+	//console.log("loading url: " + this.urls[this.currentUrlIndex]);
+
 	this.loadRequest = new XMLHttpRequest();
-	this.loadRequest.open("GET", url, true);
+	this.loadRequest.open("GET", this.urls[this.currentUrlIndex], true);
 	this.loadRequest.responseType = 'arraybuffer';
 
 	this.loadRequest.onprogress = this.onLoadRequestProgress.bind(this);
@@ -203,8 +237,6 @@ proto.load = function(url, message, completeProgress) {
 	this.loadRequest.onerror = this.onLoadRequestError.bind(this);
 
 	this.loadRequest.send();
-
-	this.showProgress(message);
 }
 
 /**
@@ -214,7 +246,13 @@ proto.load = function(url, message, completeProgress) {
  */
 proto.onLoadRequestProgress = function(e) {
 	if (e.total) {
-		this.showProgress(this.title, this.completeProgress * e.loaded / e.total);
+		var baseProgress = this.currentUrlIndex * this.completeProgress / this.urls.length;
+		var targetProgress = (this.currentUrlIndex + 1) * this.completeProgress / this.urls.length;
+
+		this.showProgress(
+			this.title,
+			baseProgress + (targetProgress - baseProgress) * e.loaded / e.total
+		);
 	}
 }
 
@@ -234,19 +272,19 @@ proto.onLoadRequestLoad = function() {
 		type: "text/javascript"
 	});
 
+	var req = this.loadRequest;
 	this.loadRequest = null;
 
 	var script = document.createElement("script");
 	script.src = window.URL.createObjectURL(blob);
 	script.onload = function() {
-		if (this.completeProgress && this.completeProgress < 100)
-			this.showProgress(this.title, this.completeProgress);
+		setTimeout(function() {
+			//console.log("rs: "+req.readyState);
 
-		else
-			this.hide();
-
-		if (this.onload)
-			this.onload();
+			this.currentUrlIndex++;
+			this.showProgress(this.title, this.completeProgress * this.currentUrlIndex / this.urls.length);
+			this.loadNext();
+		}.bind(this), 100);
 	}.bind(this);
 
 	document.getElementsByTagName('head')[0].appendChild(script);
