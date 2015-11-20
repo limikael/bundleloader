@@ -261,3 +261,6 @@ proto.onLoadRequestError = function() {
 	this.loadRequest = null;
 	this.showMessage("LOAD ERROR");
 }
+
+if (typeof module !== 'undefined')
+	module.exports = BundleLoader;
