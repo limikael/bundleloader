@@ -1,6 +1,6 @@
 {
   "name": "bundleloader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Load a javascript file and run it.",
   "main": "bundleloader.js",
   "repository": {

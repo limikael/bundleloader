@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="bundleloader" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.1</em>
+            <em>API Docs for: 0.0.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -91,6 +91,7 @@ function BundleLoader() {
 	var s;
 
 	this.element = document.createElement(&quot;div&quot;);
+	this.element.className = &quot;bundleloader&quot;;
 	s = this.element.style;
 	s.position = &quot;fixed&quot;;
 	s.top = &quot;0&quot;;
@@ -99,6 +100,8 @@ function BundleLoader() {
 	s.height = &quot;100%&quot;;
 	s.background = &quot;#000000&quot;;
 	s.display = &quot;none&quot;;
+	s.zIndex = 1;
+	s.overflow = &quot;hidden&quot;;
 
 	this.titleElement = document.createElement(&quot;div&quot;);
 	this.titleElement.innerHTML = &quot;LOADING&quot;;
@@ -143,10 +146,12 @@ function BundleLoader() {
 	this.loadRequest = null;
 	this.completeProgress = null;
 
+	this._visible = true;
+
 	this.waitForBody();
 }
 
-var proto=BundleLoader.prototype;
+var proto = BundleLoader.prototype;
 
 /**
  * Wait for the body to exist so we can attach ourselves.
@@ -244,8 +249,8 @@ proto.hide = function() {
 
 /**
  * Load javascript.
- * 
- * This function loads the javascript from the specified url, and 
+ *
+ * This function loads the javascript from the specified url, and
  * then runs it.
  *
  * By default, the loading screen will be hidden when the script
@@ -257,13 +262,16 @@ proto.hide = function() {
  * It is then up to the loaded bundle to actually hide the loader when
  * all resources are loaded.
  * @method load
- * @param {String} url Url to the javascript main bundle file.
+ * @param {String} urls Url or array of urls to the javascript main bundle file.
  * @param {String} [message] The message to show while loading.
  * @param {Number} [completeProgress] The progress to stop at.
  */
-proto.load = function(url, message, completeProgress) {
+proto.load = function(urls, message, completeProgress) {
 	if (!message)
 		message = &quot;LOADING&quot;;
+
+	if (typeof urls == &quot;string&quot;)
+		urls = [urls];
 
 	this.completeProgress = completeProgress;
 
@@ -273,8 +281,38 @@ proto.load = function(url, message, completeProgress) {
 	if (this.loadRequest)
 		throw new Error(&quot;Already loading&quot;);
 
+	this.urls = urls;
+	this.currentUrlIndex = 0;
+
+	this.loadNext();
+	this.showProgress(message);
+}
+
+/**
+ * Load next url.
+ * @method loadNext
+ */
+proto.loadNext = function() {
+	if (this.loadRequest)
+		throw new Error(&quot;Already loading&quot;);
+
+	if (this.currentUrlIndex &gt;= this.urls.length) {
+		if (this.completeProgress &amp;&amp; this.completeProgress &lt; 100)
+			this.showProgress(this.title, this.completeProgress);
+
+		else
+			this.hide();
+
+		if (this.onload)
+			this.onload();
+
+		return;
+	}
+
+	//console.log(&quot;loading url: &quot; + this.urls[this.currentUrlIndex]);
+
 	this.loadRequest = new XMLHttpRequest();
-	this.loadRequest.open(&quot;GET&quot;, url, true);
+	this.loadRequest.open(&quot;GET&quot;, this.urls[this.currentUrlIndex], true);
 	this.loadRequest.responseType = &#x27;arraybuffer&#x27;;
 
 	this.loadRequest.onprogress = this.onLoadRequestProgress.bind(this);
@@ -282,8 +320,6 @@ proto.load = function(url, message, completeProgress) {
 	this.loadRequest.onerror = this.onLoadRequestError.bind(this);
 
 	this.loadRequest.send();
-
-	this.showProgress(message);
 }
 
 /**
@@ -293,7 +329,13 @@ proto.load = function(url, message, completeProgress) {
  */
 proto.onLoadRequestProgress = function(e) {
 	if (e.total) {
-		this.showProgress(this.title, this.completeProgress * e.loaded / e.total);
+		var baseProgress = this.currentUrlIndex * this.completeProgress / this.urls.length;
+		var targetProgress = (this.currentUrlIndex + 1) * this.completeProgress / this.urls.length;
+
+		this.showProgress(
+			this.title,
+			baseProgress + (targetProgress - baseProgress) * e.loaded / e.total
+		);
 	}
 }
 
@@ -313,19 +355,19 @@ proto.onLoadRequestLoad = function() {
 		type: &quot;text/javascript&quot;
 	});
 
+	var req = this.loadRequest;
 	this.loadRequest = null;
 
 	var script = document.createElement(&quot;script&quot;);
 	script.src = window.URL.createObjectURL(blob);
 	script.onload = function() {
-		if (this.completeProgress &amp;&amp; this.completeProgress &lt; 100)
-			this.showProgress(this.title, this.completeProgress);
+		setTimeout(function() {
+			//console.log(&quot;rs: &quot;+req.readyState);
 
-		else
-			this.hide();
-
-		if (this.onload)
-			this.onload();
+			this.currentUrlIndex++;
+			this.showProgress(this.title, this.completeProgress * this.currentUrlIndex / this.urls.length);
+			this.loadNext();
+		}.bind(this), 100);
 	}.bind(this);
 
 	document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(script);
@@ -340,6 +382,14 @@ proto.onLoadRequestError = function() {
 	this.loadRequest = null;
 	this.showMessage(&quot;LOAD ERROR&quot;);
 }
+
+/**
+ *
+ */
+/home/micke / repo / pixiapp / src / PixiApp.js
+
+if (typeof module !== &#x27;undefined&#x27;)
+	module.exports = BundleLoader;
     </pre>
 </div>
                     </div>

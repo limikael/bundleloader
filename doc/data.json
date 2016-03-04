@@ -2,7 +2,7 @@
     "project": {
         "name": "bundleloader",
         "description": "Load a javascript file and run it.",
-        "version": "0.0.1",
+        "version": "0.0.4",
         "url": "https://github.com/limikael/bundleloader"
     },
     "files": {
@@ -34,7 +34,7 @@
     "classitems": [
         {
             "file": "bundleloader.js",
-            "line": 70,
+            "line": 75,
             "description": "Wait for the body to exist so we can attach ourselves.",
             "itemtype": "method",
             "name": "waitForBody",
@@ -44,7 +44,7 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 84,
+            "line": 89,
             "description": "Show the loader, with message and optional percent.\n\nThe percent parameter is optional. If this is omitted the\nprogress bar will show as in an indefinite state.",
             "itemtype": "method",
             "name": "show",
@@ -65,7 +65,7 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 117,
+            "line": 122,
             "description": "Show only a message without the progress bar.",
             "itemtype": "method",
             "name": "showMessage",
@@ -80,7 +80,7 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 136,
+            "line": 141,
             "description": "Animate the loader if the size of the load job is not known.",
             "itemtype": "method",
             "name": "onAnimateInterval",
@@ -90,7 +90,7 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 151,
+            "line": 156,
             "description": "Hide the loader.",
             "itemtype": "method",
             "name": "hide",
@@ -98,14 +98,14 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 164,
-            "description": "Load javascript.\n\nThis function loads the javascript from the specified url, and \nthen runs it.\n\nBy default, the loading screen will be hidden when the script\nis run. If there are extra resources to be loaded as part of the\napplication startup, specify a number for the completeProgress\nparameter, and the loading screen will not hide itself, but instead\nstop at the specified percentage.\n\nIt is then up to the loaded bundle to actually hide the loader when\nall resources are loaded.",
+            "line": 169,
+            "description": "Load javascript.\n\nThis function loads the javascript from the specified url, and\nthen runs it.\n\nBy default, the loading screen will be hidden when the script\nis run. If there are extra resources to be loaded as part of the\napplication startup, specify a number for the completeProgress\nparameter, and the loading screen will not hide itself, but instead\nstop at the specified percentage.\n\nIt is then up to the loaded bundle to actually hide the loader when\nall resources are loaded.",
             "itemtype": "method",
             "name": "load",
             "params": [
                 {
-                    "name": "url",
-                    "description": "Url to the javascript main bundle file.",
+                    "name": "urls",
+                    "description": "Url or array of urls to the javascript main bundle file.",
                     "type": "String"
                 },
                 {
@@ -125,7 +125,15 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 208,
+            "line": 210,
+            "description": "Load next url.",
+            "itemtype": "method",
+            "name": "loadNext",
+            "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 244,
             "description": "Load request progress.",
             "itemtype": "method",
             "name": "onLoadRequestProgress",
@@ -135,7 +143,7 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 219,
+            "line": 261,
             "description": "Load request complete.",
             "itemtype": "method",
             "name": "onLoadRequestLoad",
@@ -145,14 +153,24 @@
         },
         {
             "file": "bundleloader.js",
-            "line": 253,
+            "line": 295,
             "description": "On error.",
             "itemtype": "method",
             "name": "onLoadRequestError",
             "access": "private",
             "tagname": "",
             "class": "BundleLoader"
+        },
+        {
+            "file": "bundleloader.js",
+            "line": 305,
+            "class": "BundleLoader"
         }
     ],
-    "warnings": []
+    "warnings": [
+        {
+            "message": "Missing item type",
+            "line": " bundleloader.js:305"
+        }
+    ]
 }

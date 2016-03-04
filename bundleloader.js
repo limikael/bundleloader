@@ -20,7 +20,7 @@ function BundleLoader() {
 	s.background = "#000000";
 	s.display = "none";
 	s.zIndex = 1;
-	s.overflow="hidden";
+	s.overflow = "hidden";
 
 	this.titleElement = document.createElement("div");
 	this.titleElement.innerHTML = "LOADING";
@@ -65,6 +65,8 @@ function BundleLoader() {
 	this.loadRequest = null;
 	this.completeProgress = null;
 
+	this._visible = true;
+
 	this.waitForBody();
 }
 
@@ -81,7 +83,8 @@ proto.waitForBody = function() {
 		return;
 	}
 
-	document.body.appendChild(this.element);
+	if (this._visible && !document.body.contains(this.element))
+		document.body.appendChild(this.element);
 }
 
 /**
@@ -299,6 +302,25 @@ proto.onLoadRequestError = function() {
 	this.loadRequest = null;
 	this.showMessage("LOAD ERROR");
 }
+
+/**
+ * Should the loader be visible?
+ * @property visible
+ */
+Object.defineProperty(proto, 'visible', {
+	get: function() {
+		return this._visible;
+	},
+	set: function(value) {
+		this._visible = value;
+
+		if (this._visible && document.body && !document.body.contains(this.element))
+			document.body.appendChild(this.element);
+
+		if (!this._visible && document.body && document.body.contains(this.element))
+			document.body.removeChild(this.element);
+	}
+});
 
 if (typeof module !== 'undefined')
 	module.exports = BundleLoader;
