@@ -3,6 +3,7 @@
 	<script>
 		var loader=new BundleLoader();
 
+		loader.parentElement="loaderparent";
 //		loader.visible=false;
 
 		loader.onload=function() {
@@ -16,9 +17,8 @@
 		//loader.showProgress("CONNECTING");
 		//loader.hide();
 	</script>
-	<style>
-		.bundleloader {
-			background-color: #ff0000;
-		} 
-	</style>
+	<body>
+		hello...
+		<div style="background: #ff0000; width: 200px; height: 200px" id="loaderparent"></div>
+	</body>
 </html>

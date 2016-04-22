@@ -66,25 +66,34 @@ function BundleLoader() {
 	this.completeProgress = null;
 
 	this._visible = true;
-
-	this.waitForBody();
 }
 
 var proto = BundleLoader.prototype;
 
 /**
  * Wait for the body to exist so we can attach ourselves.
- * @method waitForBody
+ * @method waitForBodyAndAttach
  * @private
  */
-proto.waitForBody = function() {
-	if (!document.body) {
-		setTimeout(this.waitForBody.bind(this), 0);
+proto.waitForBodyAndAttach = function() {
+	var el;
+
+	if (this._parentElement) {
+		el = document.getElementById(this._parentElement);
+		//console.log("p: " + this._parentElement + " ... el: " + el);
+	} else {
+		el = document.body;
+	}
+
+	if (!el) {
+		if (this.loadRequest)
+			setTimeout(this.waitForBodyAndAttach.bind(this), 10);
+
 		return;
 	}
 
-	if (this._visible && !document.body.contains(this.element))
-		document.body.appendChild(this.element);
+	if (this._visible && !el.contains(this.element))
+		el.appendChild(this.element);
 }
 
 /**
@@ -206,6 +215,8 @@ proto.load = function(urls, message, completeProgress) {
 
 	this.loadNext();
 	this.showProgress(message);
+
+	this.waitForBodyAndAttach();
 }
 
 /**
@@ -319,6 +330,27 @@ Object.defineProperty(proto, 'visible', {
 
 		if (!this._visible && document.body && document.body.contains(this.element))
 			document.body.removeChild(this.element);
+	}
+});
+
+/**
+ * Set parent element.
+ */
+Object.defineProperty(proto, 'parentElement', {
+	get: function() {
+		return this._parentElement
+	},
+	set: function(parentElement) {
+		this._parentElement = parentElement;
+
+		if (this._parentElement)
+			this.element.style.position = "relative";
+
+		else
+			this.element.style.position = "fixed";
+
+		if (this.element.parentElement)
+			this.element.parentElement.removeChild(this.element);
 	}
 });
 
