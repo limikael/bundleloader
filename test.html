@@ -10,7 +10,7 @@
 			console.log("loaded, hello="+window.helloWorld);
 		}
 
-		loader.load("test.php","LOADING");
+		loader.load("test.php","LOADING",50);
 		//loader.load("test.php","LOADING",50);
 		//loader.load("test.php");
 		//loader.showProgress("LOADING",50);
@@ -19,6 +19,6 @@
 	</script>
 	<body>
 		hello...
-		<div style="background: #ff0000; width: 200px; height: 200px" id="loaderparent"></div>
+		<div style="position: relative; width: 200px; height: 200px" id="loaderparent"></div>
 	</body>
 </html>

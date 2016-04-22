@@ -344,7 +344,7 @@ Object.defineProperty(proto, 'parentElement', {
 		this._parentElement = parentElement;
 
 		if (this._parentElement)
-			this.element.style.position = "relative";
+			this.element.style.position = "absolute";
 
 		else
 			this.element.style.position = "fixed";
